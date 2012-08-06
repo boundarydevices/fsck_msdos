@@ -86,6 +86,11 @@ readboot(dosfs, boot)
 
 	boot->FATsecs = boot->FATsmall;
 
+	if(boot->BytesPerSec == 0){
+		perror("Not valide BytesPerSec");
+		exit(2);
+	}
+
 	if (!boot->RootDirEnts)
 		boot->flags |= FAT32;
 	if (boot->flags & FAT32) {
